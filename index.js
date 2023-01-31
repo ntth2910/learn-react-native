@@ -8,6 +8,7 @@ import {name as appName} from './app.json';
 import React from 'react';
 import {Text} from 'react-native';
 import WelcomeScreen from './screens/WelcomeScreen';
+import Welcome from './screens/Welcome';
 
 const fakeProducts = [
   {
@@ -25,14 +26,15 @@ const fakeProducts = [
 ];
 
 AppRegistry.registerComponent(appName, () => () => (
-  <WelcomeScreen
-    x={1}
-    y={2}
-    person={{
-      name: 'thu ha',
-      age: 18,
-      email: 'hanguyen@gmail.com',
-    }}
-    products={fakeProducts}
-  />
+  // <WelcomeScreen
+  //   x={1}
+  //   y={2}
+  //   person={{
+  //     name: 'thu ha',
+  //     age: 18,
+  //     email: 'hanguyen@gmail.com',
+  //   }}
+  //   products={fakeProducts}
+  // />
+  <Welcome />
 ));
