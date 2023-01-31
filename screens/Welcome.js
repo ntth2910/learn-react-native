@@ -25,7 +25,7 @@ const Welcome = () => {
             // height: 50,
             backgroundColor: '#FFB6C1',
             justifyContent: 'flex-start',
-            alignItems: 'flex-start',
+            alignItems: 'center',
             borderRadius: 15,
           }}
         >
