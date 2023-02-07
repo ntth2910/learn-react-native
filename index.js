@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /**
  * @format
  */
@@ -8,7 +9,7 @@ import {name as appName} from './app.json';
 import React from 'react';
 import {Text} from 'react-native';
 import WelcomeScreen from './screens/WelcomeScreen';
-import Welcome from './screens/Welcome';
+import {Welcome, Login} from './screens/index';
 
 const fakeProducts = [
   {
@@ -36,5 +37,6 @@ AppRegistry.registerComponent(appName, () => () => (
   //   }}
   //   products={fakeProducts}
   // />
-  <Welcome />
+  // <Welcome />
+  <Login />
 ));

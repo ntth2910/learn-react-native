@@ -1,14 +1,24 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   Text,
   View,
   Image,
   ImageBackground,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
-import {icons, images} from '../constants/index';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import {icons, images, fontSize} from '../constants/index';
+// import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import {UIButton} from '../components/index';
 const Welcome = () => {
+  //state => when a state is changed =>UI is reloads
+  const [accountTypes, setAccountTypes] = useState([
+    {name: 'Influencer', isSelected: true},
+    {name: 'Business', isSelected: false},
+    {name: 'Individual', isSelected: false},
+  ]);
   return (
     <View style={{backgroundColor: 'white', flex: 100}}>
       <ImageBackground
@@ -39,7 +49,7 @@ const Welcome = () => {
           />
           <Text style={{color: 'white', paddingLeft: 5}}>YOURCOMPANY.CO</Text>
           <View style={{flex: 100}} />
-          <Image
+          {/* <Image
             style={{
               height: 20,
               width: 20,
@@ -47,6 +57,14 @@ const Welcome = () => {
               marginRight: 10,
             }}
             source={icons.icon_question}
+          /> */}
+          <FontAwesome5Icon
+            name={'question-circle'}
+            color={'white'}
+            size={20}
+            style={{
+              marginEnd: 15,
+            }}
           />
         </View>
         <View
@@ -57,38 +75,69 @@ const Welcome = () => {
             alignItems: 'center',
           }}
         >
-          <Text style={{color: '#20B2AA', fontSize: 12}}>Welcome to</Text>
-          <Text style={{color: '#20B2AA', fontWeight: 'bold'}}>
+          <Text style={{color: '#20B2AA', fontSize: fontSize.h6}}>
+            Welcome to
+          </Text>
+          <Text
+            style={{
+              color: '#20B2AA',
+              fontWeight: 'bold',
+              fontSize: fontSize.h3,
+            }}
+          >
             YOURCOMPANY.CO !
           </Text>
-          <Text style={{color: '#20B2AA', fontSize: 12}}>
+          <Text style={{color: '#20B2AA', fontSize: fontSize.h6}}>
             Please select your account type
           </Text>
         </View>
-        <View style={{flex: 50}}>
-          <TouchableOpacity
+        <View style={{flex: 40}}>
+          {accountTypes.map(accountType => {
+            return (
+              <UIButton
+                onPress={() => {
+                  let newAccountTypes = accountTypes.map(eachAccountType => {
+                    return {
+                      ...eachAccountType,
+                      isSelected: eachAccountType.name == accountType.name,
+                    };
+                  });
+                  setAccountTypes(newAccountTypes);
+                }}
+                title={accountType.name}
+                isSelected={accountType.isSelected}
+              />
+            );
+          })}
+        </View>
+        <View style={{flex: 25}}>
+          <UIButton title={'Login'.toUpperCase()} />
+          <Text
             style={{
-              borderColor: 'white',
-              borderWidth: 1,
-              height: 45,
-              borderRadius: 5,
-              marginHorizontal: 15,
-              marginVertical: 10,
-              justifyContent: 'center',
-              alignItems: 'center',
-              //   backgroundColor: '#20B2AA',
+              color: '#20B2AA',
+              fontSize: fontSize.h6,
+              alignSelf: 'center',
             }}
+          >
+            Want to register new Account ?
+          </Text>
+          <TouchableOpacity
+            style={{padding: 5}}
+            onPress={() => alert('press to register')}
           >
             <Text
               style={{
                 color: '#FFB6C1',
+                fontSize: fontSize.h5,
+                fontWeight: 'bold',
+                alignSelf: 'center',
+                textDecorationLine: 'underline',
               }}
             >
-              Influencer
+              Register
             </Text>
           </TouchableOpacity>
         </View>
-        <View style={{flex: 15, backgroundColor: 'green'}} />
       </ImageBackground>
     </View>
   );
